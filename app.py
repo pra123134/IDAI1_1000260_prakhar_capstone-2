@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os
 
 # ✅ Secure API Key Handling
-api_key = st.secrets.get("GOOGLE_API_KEY", os.getenv("GOOGLE_API_KEY"))
+api_key = st.secrets.get("GOOGLE_API_KEY", os.getenv("AIzaSyClQ_tUTJ1QfgSk_TV23MPNagcQXuKnQFw"))
 if not api_key:
     st.error("⚠️ API Key is missing. Add your Gemini API key in Streamlit Secrets or as an environment variable.")
     st.stop()
