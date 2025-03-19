@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # ✅ Configure API Key securely
 if "GOOGLE_API_KEY" in st.secrets:
-    api_key = st.secrets["AIzaSyAAMjfIt1fHGeoSgx9QDSOZfG6KeGGJwp0"]
+    api_key = st.secrets["AIzaSyCjKph8V0SIek0SeYkQITjhpGB17D4uNnU"]
     genai.configure(api_key=api_key)
 else:
     st.error("⚠️ API Key is missing. Go to Streamlit Cloud → Settings → Secrets and add your API key.")
@@ -21,42 +21,93 @@ def get_ai_response(prompt, fallback_message="⚠️ AI response unavailable. Pl
 # ✅ Streamlit UI Configuration
 st.set_page_config(page_title="Gamified Decision-Making for Smart Restaurants", layout="wide")
 
-st.title("🎯 Gamified Decision-Making for Restaurant Management with Gemini 1.5 Pro")
-st.write("🚀 Optimize decisions, predict challenges, and enhance sustainability through AI-driven gamification.")
+st.title("🎮 Gamified Decision-Making for Smart Restaurant Management")
+st.write("🚀 Earn points for optimizing decisions and tackling AI-generated challenges.")
 
-# 🎯 **Gamified Decision-Making**
-st.header("📊 Gamified Decision-Making Challenges")
+# 🎯 **Decision-Making Challenges**
+st.header("🧠 Decision-Making Challenges")
 
-decision_scenario = st.text_area("🔍 Describe a managerial challenge (e.g., high waste, low sales, peak inefficiencies)")
-if st.button("🚀 Generate AI Challenge"):
-    if not decision_scenario:
-        st.error("⚠️ Please enter a decision-making scenario.")
-    else:
-        prompt = f"""
-        Generate a gamified decision-making challenge for restaurant managers facing:
-        - Scenario: {decision_scenario}
-        
-        Provide a scoring system based on the effectiveness of decisions made.
-        """
-        st.text_area("🏆 AI-Generated Challenge:", get_ai_response(prompt), height=300)
+challenge_type = st.selectbox("🎯 Select a Challenge Type", [
+    "High Waste Reduction",
+    "Low Sales Optimization",
+    "Peak Hour Efficiency",
+    "Staff Shortages Management"
+])
 
-# 📌 **AI-Generated Scenario Simulations**
-st.header("📌 AI-Generated Scenario Simulations")
-if st.button("🧠 Predict and Solve Bottlenecks"):
-    prompt = "Predict upcoming bottlenecks in restaurant management (e.g., staff shortages, inventory issues) and provide a virtual case study to solve."
-    st.text_area("🔮 AI-Generated Bottleneck Scenario:", get_ai_response(prompt), height=300)
+if st.button("⚡ Generate AI Challenge"):
+    prompt = f"""
+    Generate a gamified decision-making challenge for restaurant managers dealing with:
+    - {challenge_type}
+    
+    Include:
+    - Scenario description
+    - Optimization strategies
+    - Scoring system
+    - Performance evaluation metrics
+    - AI-generated feedback and reward system
+    """
+    st.text_area("📋 AI-Generated Challenge:", get_ai_response(prompt), height=300)
 
-# 🌱 **AI-Driven Sustainability Challenges**
+# 🏆 **Scenario Simulations**
+st.header("📊 AI-Generated Scenario Simulations")
+
+simulation_topic = st.selectbox("🔍 Choose a Scenario Simulation", [
+    "Predict Staff Shortages",
+    "Manage Inventory Issues",
+    "Forecast Demand Variations",
+    "Handle Emergency Situations"
+])
+
+if st.button("🔄 Generate Scenario Simulation"):
+    prompt = f"""
+    Generate a virtual case study to simulate:
+    - {simulation_topic}
+    
+    Provide:
+    - A realistic restaurant scenario
+    - Decision-making options
+    - AI-driven hints and insights
+    - Scoring based on managerial decisions
+    - Rewards for optimal solutions
+    """
+    st.text_area("📋 AI-Generated Scenario:", get_ai_response(prompt), height=300)
+
+# 🌍 **Sustainability Challenges**
 st.header("🌱 AI-Driven Sustainability Challenges")
-if st.button("🌍 Generate Sustainability Challenge"):
-    prompt = "Create a sustainability-focused restaurant challenge, encouraging managers to optimize waste reduction and energy efficiency with rewards."
-    st.text_area("♻️ Sustainability Challenge:", get_ai_response(prompt), height=300)
 
-# ⏳ **Dynamic AI Adjustments for Peak Hours**
+sustainability_focus = st.selectbox("♻️ Choose a Sustainability Focus", [
+    "Waste Reduction",
+    "Energy Efficiency",
+    "Sustainable Sourcing",
+    "Eco-Friendly Packaging"
+])
+
+if st.button("🌎 Generate Sustainability Challenge"):
+    prompt = f"""
+    Generate an AI-driven sustainability challenge for restaurant managers focusing on:
+    - {sustainability_focus}
+    
+    Include:
+    - Environmental impact assessment
+    - AI recommendations for sustainability
+    - Reward system for eco-friendly choices
+    - Long-term sustainability tracking metrics
+    """
+    st.text_area("📋 AI-Generated Sustainability Challenge:", get_ai_response(prompt), height=300)
+
+# 📊 **Dynamic AI Adjustments for Peak Hours**
 st.header("⏳ Dynamic AI Adjustments for Peak Hours")
-if st.button("📈 Optimize Peak Hour Performance"):
-    prompt = "Analyze peak hour trends and suggest real-time AI-driven strategies for managers to balance workload and demand efficiently."
-    st.text_area("🚦 AI-Powered Peak Hour Strategy:", get_ai_response(prompt), height=300)
+
+if st.button("⚙️ Get AI Insights for Peak Hour Management"):
+    prompt = """
+    Analyze peak hour trends and suggest AI-driven strategies for managers to:
+    - Balance workload and demand
+    - Optimize staffing during peak hours
+    - Improve table turnover rates
+    - Enhance customer satisfaction during rush hours
+    - Implement AI-driven rewards for efficiency
+    """
+    st.text_area("📋 AI-Powered Peak Hour Insights:", get_ai_response(prompt), height=300)
 
 # ✅ Footer
 st.write("🚀 Powered by Gemini 1.5 Pro with GenAI")
